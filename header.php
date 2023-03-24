@@ -19,20 +19,30 @@
     <link rel="stylesheet" href=
     "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
+<!-- Bootstrap JavaScript Libraries -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+  </script>
+
 </head>
 
 <body>
   <header>
     <!-- Header -->
-    <div class = "container-fluid p-3  bg-secondary text-white border">
+    <div class = "container-fluid p-3  bg-secondary text-white ">
         <h1>Essay Pro</h1>
         <p>Essay Organizer</p>
     </div>
-
+</header>
+<header class = "">
     <!--NavBar-->
     <nav class = "navbar navbar-expand-sm bg-dark navbar-dark">
         <div class = "container-fluid justify-content-center">
-            <ul class = "navbar-nav ">
+            <ul class = "navbar-nav">
                 <li class = "nav-item px-5">
                     <a class = "nav-link" href = "index.php">Home</a>
                 </li>
@@ -63,15 +73,7 @@
   </header>
 
 <script>
-     document.addEventListener("DOMContentLoaded", function(event) { 
-            var pos = sessionStorage.getItem('scrollpos');
-            if (pos) window.scrollTo(0, pos);
-        });
-
-        window.onbeforeunload = function(e) {
-            sessionStorage.setItem('scrollpos', window.scrollY);
-        };
-
+     
 </script>
 
                         
