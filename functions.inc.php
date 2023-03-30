@@ -1,5 +1,6 @@
 <?php
 
+//Checks if all Input Fields are filled
 function emptyInputSignup($username, $pswd, $pswd2){
     $result;
     if(empty($username) || empty($pswd) || empty($pswd2)){
@@ -11,6 +12,7 @@ function emptyInputSignup($username, $pswd, $pswd2){
     return $result;
 }
 
+//Checks if username is made up of only alphanumeric characters
 function invalidUid($username){
     $result;
     if(!preg_match("/^[a-zA-Z0-9]*$/", $username)){
@@ -22,6 +24,7 @@ function invalidUid($username){
     return $result;
 }
 
+//Checks if entered password matches password confirmation
 function pwdMatch($pswd, $pswd2){
     $result;
     if($pswd !== $pswd2){
@@ -33,6 +36,7 @@ function pwdMatch($pswd, $pswd2){
     return $result;
 }
 
+//Check if username is already taken
 function uidExists($conn, $username){
     $sql = "SELECT * FROM users WHERE usersUid = ?;";
     $stmt = mysqli_stmt_init($conn);
@@ -57,6 +61,7 @@ function uidExists($conn, $username){
     mysqli_stmt_close($stmt);
 }
 
+//Add New User to Database
 function createUser($conn, $username, $pswd){
     $sql = "INSERT INTO users (usersUid, usersPwd) VALUES (?, ?);";
     $stmt = mysqli_stmt_init($conn);
@@ -76,6 +81,7 @@ function createUser($conn, $username, $pswd){
      
 }
 
+//Check if all Login Fields are filled
 function emptyInputLogin($username, $pswd){
     $result;
     if(empty($username) || empty($pswd)){
@@ -87,6 +93,7 @@ function emptyInputLogin($username, $pswd){
     return $result;
 }
 
+//Log In User if username and password are correct
 function loginUser($conn, $username, $pswd){
     $uidExists = uidExists($conn, $username);
 

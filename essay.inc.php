@@ -21,23 +21,25 @@ session_start();
     
     $sql = "INSERT INTO essays (essayPrompt, wordLimit, completed, collegeId, userId) VALUES ('$ep', '$wl', '$com', '$cid', '$uid');";
      mysqli_query($conn, $sql);
-     header("location: ../essay.php");
+     header("location: ../essay1.php");
     
    }
 
 //Update Essay Info
    if(isset($_POST["updateEssay"])){
+    //Store Form Data
     $nEP = mysqli_real_escape_string($conn, $_POST["updateEP"]);
     $nWL = $_POST["updateWL"];
     $hidden = $_POST["getEID"];
     $eId = $_SESSION['eID'.$hidden];
     $cid = $_SESSION['cCollege'];
     
+    //Update Database
     $sql = "UPDATE essays SET essayPrompt = '$nEP', wordLimit = '$nWL'
     WHERE essayId = '$eId' AND collegeId = '$cid'";
     $run = mysqli_query($conn, $sql);
     if($run){
-    header("location: ../essay.php");
+    header("location: ../essay1.php");
     } 
     else{
       die(mysqli_error($conn));
@@ -49,11 +51,12 @@ session_start();
 if(isset($_POST["deleteE"])){
     $del = $_POST["delEID"];
     $eLoc = $_SESSION['eID'.$del];
-    echo $eLoc;
+    
+    //Delete from Database
     $sql = "DELETE FROM essays WHERE essayId = '$eLoc'";
     $run = mysqli_query($conn, $sql);
     if($run){
-    header("location: ../essay.php");
+    header("location: ../essay1.php");
     } 
     else{
       die(mysqli_error($conn));
@@ -62,19 +65,22 @@ if(isset($_POST["deleteE"])){
 
 //Update Responses
 if(isset($_POST["save"])){
+    //Store Form Data
     $loc = $_POST['save'];
     $index = $_SESSION['eID'.$loc];
-    $rsp =  $_POST["rsp".$loc];
+    $rsp =  $_POST["rsp"];
     
-    $nt = $_POST["nt".$loc];
+    $nt = $_POST["nt"];
     
+    //Determine Checkbox Condition
     $comp;
-    if(isset($_POST["complete".$loc])){
+    if(isset($_POST["complete"])){
         $comp = "Yes";
     }else{
         $comp = "No";
     }
     
+    //Update Database
     $sql = "UPDATE essays SET response = ?, notes = ?, completed = ?
     WHERE essayId = ?";
 
@@ -85,7 +91,7 @@ if(isset($_POST["save"])){
       mysqli_stmt_bind_param($stmt, "sssi", $rsp, $nt, $comp, $index);
       mysqli_stmt_execute($stmt);
       mysqli_stmt_close($stmt);
-      header("location: ../essay.php");
+      header("location: ../essay1.php");
     }
 
     

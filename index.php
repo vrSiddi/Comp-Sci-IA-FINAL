@@ -25,7 +25,7 @@
             </div>
             <div class="carousel-item">
                 <div class="d-flex h-100 align-items-center justify-content-center">
-                    <h3>Store up to 25 essays across 5 colleges</h3>
+                    <h3>Store up to unlimited essays across unlimited colleges</h3>
                 </div>
             </div>
         </div>
@@ -48,7 +48,7 @@
         <div class="card-body">
           <h4 class="card-title">My colleges</h4>
           <p class="card-text">Add more colleges and essays</p>
-          <a href="colleges.php" class="btn btn-primary">Edit</a>
+          <a href="colleges1.php" class="btn btn-primary">Edit</a>
         </div>
       </div>
       <div class="card">
@@ -65,13 +65,7 @@
     <!-- place footer here -->
   </footer>
   <!-- Bootstrap JavaScript Libraries -->
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
-  </script>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
-    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
-  </script>
+  
 </body>
 
 </html>

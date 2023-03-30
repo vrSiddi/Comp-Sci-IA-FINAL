@@ -38,7 +38,7 @@
         <p>Essay Organizer</p>
     </div>
 </header>
-<header class = "">
+<header class = "" >
     <!--NavBar-->
     <nav class = "navbar navbar-expand-sm bg-dark navbar-dark">
         <div class = "container-fluid justify-content-center">
@@ -49,7 +49,7 @@
                 <li class = "nav-item px-5">
                     <a class = "nav-link" href = "colleges.php">My Colleges</a>
                 </li>
-                <li class = "nav-item dropdown px-5">
+                <li class = "nav-item dropdown px-5" >
                     <a class = "nav-link dropdown-toggle" data-bs-toggle="dropdown" href = "#">Account</a>
                     <ul class = "dropdown-menu">
                         <?php 

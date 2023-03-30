@@ -14,34 +14,37 @@
     <div class="container mt-3" id = "pos">
     <h1 class = "mb-2">Colleges</h1>
         <div id="accordion" >
+    
     <?php 
-    
-    
     //Retrieve Database Information
     $uid = $_SESSION["userid"];
     $sql = "SELECT * FROM colleges WHERE userId = $uid;";
     $result = mysqli_query($conn, $sql);
     $num = mysqli_num_rows($result);
 
-    //Match Card Text
+    //Create College Cards
     if($num > 0){
         $n = 1;
         
         while($row = mysqli_fetch_assoc($result)){
-           
+            //Session Variable Creation
             $id = $row['collegeId'];
             $_SESSION['cID'.$n] = $id;
             
+            //Database Information Storage Variables
             $name = $row['collegeName'];
             $date = $row['dueDate'];
+            
+            //Unique HTML ID creation
             $cn = 'cn'.$n;
             $dd = 'dd'.$n;
             $college = 'college'.$n;
             $prog = 'prog'.$n;
             $ref = '#collapse'.$n;
             $open = 'collapse'.$n;
-            //echo "<script> alert('$cn')</script>";
             
+
+            //Display Cards
             echo "<div class=\"card\" id = \"$college\">
             <div class=\"card-header\">
                     <!--College Name-->
@@ -62,7 +65,7 @@
                 <!--Expand Button-->
                 <div class = \"text-center\">
                     <a class=\"btn\" data-bs-toggle=\"collapse\" href=\"$ref\">
-                    See More
+                    See Essays
                     </a>
                 </div>
             </div>
@@ -111,11 +114,8 @@
             $n++;
             
         }
-    }
-
-    
-
-?>
+    }  
+    ?>
             
         <!--End of Accordion-->    
         </div>
@@ -228,22 +228,20 @@
 
     var loc = 1;
     
-    //Open Edit Modal
+    //Open Edit Modal Listener
     var editModal = document.getElementById("editCollege");
     editModal.addEventListener("show.bs.modal", function (event) {
         // Button that triggered the modal
         var button = event.relatedTarget;
-        // Extract info from data-bs-* attributes
+        // Extract college number from data-bs-whatever 
         var college = button.getAttribute("data-bs-whatever");
         
         var cNum = college.substring(college.length-1);
         loc = cNum;
         
-        
-        
         var cn = document.getElementById("cn" + cNum);
         var dd = document.getElementById("dd" + cNum);
-        // Update the modal's content.
+        // Autofill the modal's form fields
         var name = document.getElementById("college-name");
         var date = document.getElementById("due-date");
         var hidden = document.getElementById("college-id");
@@ -257,7 +255,7 @@
     delModal.addEventListener("show.bs.modal", function (event) {
         // Button that triggered the modal
         var button = event.relatedTarget;
-        // Extract info from data-bs-* attributes
+        // // Extract college number from data-bs-whatever 
         var college = button.getAttribute("data-bs-whatever");
         var cNum = college.substring(college.length-1);
         delLocator = cNum;

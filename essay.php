@@ -1,13 +1,38 @@
 <?php 
     include_once 'header.php';
 ?>
-  <main>
-    <div class = "container mt-3">
+  <main style = "scroll-padding-top: 70px;">
+  <div class = "d-flex">
+    <div class = "sticky-top mt-1 ms-5 container bg-light" style = "width: 11%;">
+
+        <p class = "mx-auto mb-none pt-2"> 
+        <button class="btn btn-primary " type="button" data-bs-toggle="offcanvas" data-bs-target="#quickNav">
+        Quick Find
+        </button>
+        </p>
+    </div>
+  </div>
+      
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="quickNav" style="width: 300px;">
+        <div class="card card-body" style="width: 300px;">
+        <h3> Essay Navigation </h3>
+        <div id="list-example" class="list-group">
+        <a class="list-group-item text-truncate list-group-item-action" href="#ep1">Stanford Roommate Essay Roommate Essay Roommate Essay Roommate Essay </a>
+        <a class="list-group-item list-group-item-action" href="#ep2">Item 2</a>
+        <a class="list-group-item list-group-item-action" href="#essay3">Item 3</a>
+        <a class="list-group-item list-group-item-action" href="#essay4">Item 4</a>
+      </div>
+      <p>Return to <a href = "colleges.php">Colleges</a> </p>
+        </div>
+    </div>
+    
+  
+    <div class = "container-fluid mt-3 mx-auto" data-bs-spy= "scroll" data-bs-target="#quickNav" data-bs-offset-top="10" tabindex="0"  style = "max-width:1000px">
       <!--Essay 1-->
-        <div class="card mx-auto d-none" style = "width: 60rem;" id = "essay1">
+        <div class="card mx-auto d-none mb-4"  id = "essay1">
             <div class="card-header">
                 <!--Essay Name-->
-                <h4 class = "d-inline-block text-wrap" id="ep1">Essay #1</h4>
+                <h4 class = "d-inline-block text-wrap" style = "padding-top:75px; margin-top:-75px;" id="ep1">Essay #1</h4>
                 <!--Edit and Delete Buttons-->
                 <button type="button" class="btn btn-danger float-end mx-1"  data-bs-toggle="modal" data-bs-target="#delEssay" data-bs-whatever="ed1" >
                     <i class="bi bi-trash" data-bs-toggle="tooltip" title="Deletes this essay from your list"></i>
@@ -23,17 +48,17 @@
             <form action = "includes/essay.inc.php" method = "post">
               <div class = "card-body bg-light">
                   <label for="response1" class="form-label">Response:</label>
-                  <textarea class="form-control" id="response1" oninput = "countWords(1)" rows="10" name = "rsp1"></textarea>
+                  <textarea class="form-control" id="response1" oninput = "countWords(1)" rows="10" name = "rsp"></textarea>
                   <div class = "justify-content-end"> 
                         <h6 class = "d-inline-block">Word Count:</h6>
                         <h6 class = "d-inline-block" id = "wc1">250</h6>
                   </div>
                   <label for="notes1" class="form-label mt-2">Notes:</label>
-                  <textarea class="form-control" id="notes1" name= "nt1" rows="4"></textarea>
+                  <textarea class="form-control" id="notes1" name= "nt" rows="4"></textarea>
               </div>
               <div class = "card-footer">
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="check1" name = "complete1">
+                  <input class="form-check-input" type="checkbox" value="" id="check1" name = "complete">
                   <label class="form-check-label" for="flexCheckDefault">
                       Completed
                   </label>
@@ -46,10 +71,11 @@
         </div>
 
         <!--Essay 2-->
-        <div class="card mt-4 mx-auto d-none" style = "width: 60rem;" id = "essay2">
+        
+        <div class="card mx-auto "  id = "essay2">
             <div class="card-header">
                 <!--Essay Name-->
-                <h4 class = "d-inline-block text-wrap" id="ep2">Essay #2</h4>
+                <h4 class = "d-inline-block text-wrap" style = "padding-top:75px; margin-top:-75px;" id="ep2">Essay #2</h4>
                 <!--Edit and Delete Buttons-->
                 <button type="button" class="btn btn-danger float-end mx-1"  data-bs-toggle="modal" data-bs-target="#delEssay" data-bs-whatever="ed2" >
                     <i class="bi bi-trash" data-bs-toggle="tooltip" title="Deletes this essay from your list"></i>
@@ -65,17 +91,17 @@
             <form action = "includes/essay.inc.php" method = "post">
               <div class = "card-body bg-light">
                   <label for="response2" class="form-label">Response:</label>
-                  <textarea class="form-control" id="response2" oninput = "countWords(2)" rows="10" name = "rsp2"></textarea>
+                  <textarea class="form-control" id="response2" oninput = "countWords(2)" rows="10" name = "rsp"></textarea>
                   <div class = "justify-content-end"> 
                         <h6 class = "d-inline-block">Word Count:</h6>
                         <h6 class = "d-inline-block" id = "wc2">250</h6>
                   </div>
                   <label for="notes2" class="form-label mt-2">Notes:</label>
-                  <textarea class="form-control" id="notes2" name = "nt2" rows="4"></textarea>
+                  <textarea class="form-control" id="notes2" name = "nt" rows="4"></textarea>
               </div>
               <div class = "card-footer">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="check2" name = "complete2">
+                    <input class="form-check-input" type="checkbox" value="" id="check2" name = "complete">
                     <label class="form-check-label" for="flexCheckDefault">
                         Completed
                     </label>
@@ -106,17 +132,17 @@
             <form action = "includes/essay.inc.php" method = "post">
               <div class = "card-body bg-light">
                   <label for="response2" class="form-label">Response:</label>
-                  <textarea class="form-control" oninput = "countWords(3)" id="response3" rows="10" name = "rsp3"></textarea>
+                  <textarea class="form-control" oninput = "countWords(3)" id="response3" rows="10" name = "rsp"></textarea>
                   <div class = "justify-content-end"> 
                         <h6 class = "d-inline-block">Word Count:</h6>
                         <h6 class = "d-inline-block" id = "wc3">250</h6>
                   </div>
                   <label for="notes2" class="form-label mt-2">Notes:</label>
-                  <textarea class="form-control" id="notes3" name = "nt3" rows="4"></textarea>
+                  <textarea class="form-control" id="notes3" name = "nt" rows="4"></textarea>
               </div>
               <div class = "card-footer">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="check3" name = "complete3">
+                    <input class="form-check-input" type="checkbox" value="" id="check3" name = "complete">
                     <label class="form-check-label" for="flexCheckDefault">
                         Completed
                     </label>
@@ -146,17 +172,17 @@
             <form action = "includes/essay.inc.php" method = "post">
               <div class = "card-body bg-light">
                   <label for="response2" class="form-label">Response:</label>
-                  <textarea class="form-control" oninput = "countWords(4)" id="response4" rows="10" name = "rsp4"></textarea>
+                  <textarea class="form-control" oninput = "countWords(4)" id="response4" rows="10" name = "rsp"></textarea>
                   <div class = "justify-content-end"> 
                         <h6 class = "d-inline-block">Word Count:</h6>
                         <h6 class = "d-inline-block" id = "wc4">250</h6>
                   </div>
                   <label for="notes2" class="form-label mt-2">Notes:</label>
-                  <textarea class="form-control" id="notes4" name = "nt4" rows="4"></textarea>
+                  <textarea class="form-control" id="notes4" name = "nt" rows="4"></textarea>
               </div>
               <div class = "card-footer">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="check4" name = "complete4">
+                    <input class="form-check-input" type="checkbox" value="" id="check4" name = "complete">
                     <label class="form-check-label" for="flexCheckDefault">
                         Completed
                     </label>
@@ -186,17 +212,17 @@
             <form action = "includes/essay.inc.php" method = "post">
               <div class = "card-body bg-light">
                   <label for="response2" class="form-label">Response:</label>
-                  <textarea class="form-control" oninput = "countWords(5)" id="response5" rows="10" name = "rsp5"></textarea>
+                  <textarea class="form-control" oninput = "countWords(5)" id="response5" rows="10" name = "rsp"></textarea>
                   <div class = "justify-content-end"> 
                         <h6 class = "d-inline-block">Word Count:</h6>
                         <h6 class = "d-inline-block" id = "wc5">250</h6>
                   </div>
                   <label for="notes2" class="form-label mt-2">Notes:</label>
-                  <textarea class="form-control" id="notes5" name = "nt5" rows="4"></textarea>
+                  <textarea class="form-control" id="notes5" name = "nt" rows="4"></textarea>
               </div>
               <div class = "card-footer">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="check5" name = "complete5">
+                    <input class="form-check-input" type="checkbox" value="" id="check5" name = "complete">
                     <label class="form-check-label" for="flexCheckDefault">
                         Completed
                     </label>
@@ -206,12 +232,14 @@
             </div>
         </div>
     <!--End of Cards-->
+    <!--Add Essay Button-->
+    <div class="mt-3 mb-2 text-center">
+        <button type="button" class="btn btn-primary w-100"  data-bs-toggle="modal" data-bs-target="#addEssay" id = "addE">Add Essay</button>
+    </div>
     </div>
 
-    <!--Add Essay Button-->
-    <div class="container mt-3 text-center">
-        <button type="button" class="btn btn-primary " style = "width: 60rem;" data-bs-toggle="modal" data-bs-target="#addEssay" id = "addE">Add Essay</button>
-    </div>
+    
+    
 
     <!--Add Essay Modal-->
     <div class="modal fade" id="addEssay" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -364,17 +392,10 @@
     <!-- place footer here -->
   </footer>
   <!-- Bootstrap JavaScript Libraries -->
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
-  </script>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
-    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
-  </script>
-
+  
   <script>
     
-
+    
 
     //Tooltip Script
     var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
@@ -428,6 +449,7 @@
         var textR = resp.value;
         
         var count = 0;
+        //textR = textR.replace(/\n/, ' ');
         var words = textR.split(' ');
         
         for(var i = 0; i<words.length; i++){
@@ -441,9 +463,10 @@
 
         var max = parseInt(document.getElementById("wl" + loc).textContent);
         
-        if(count>max){
-            
-            counter.classList.add('text-danger');
+        if(count>max || count == 0){
+            if(count>max){
+                counter.classList.add('text-danger');
+            }
             document.getElementById("check"+loc).checked = false;
             document.getElementById("check"+loc).disabled = true;
         } else{
@@ -458,8 +481,16 @@
         countWords(i);
     }
 
-    
+    document.addEventListener("DOMContentLoaded", function(event) { 
+            var pos = sessionStorage.getItem('scrollpos');
+            if (pos) window.scrollTo(0, pos);
+        });
 
+        window.onbeforeunload = function(e) {
+            sessionStorage.setItem('scrollpos', window.scrollY);
+        };
+
+        
 
   </script>
 </body>

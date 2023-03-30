@@ -10,7 +10,7 @@
         var textR = resp.value;
         
         var count = 0;
-        //textR = textR.replace(/\n/, ' ');
+        
         var words = textR.split(' ');
         
         for(var i = 0; i<words.length; i++){
@@ -37,13 +37,13 @@
 
     }
 </script>
-  
+  <!--Container with Essay Finder Scrollspy Opener-->
   <main style = "scroll-padding-top: 70px;">
-  <div class = "sticky-top mt-1 container-fluid bg-light d-flex">
+  <div class = "sticky-top mt-1 container-fluid bg-light d-flex" style= "z-index: 1;">
 
-  <p class = "mx-auto mb-none pt-2"> Use Quick Find to Navigate to Essays Quickly
+  <p class = " mb-none pt-2">
   <button class="btn btn-primary " type="button" data-bs-toggle="offcanvas" data-bs-target="#quickNav">
-        Quick Find
+        Find Essay
   </button>
 </p>
     </div>
@@ -53,13 +53,14 @@
         <h3> Essay Navigation </h3>
         <div id="list-example" class="list-group">
         <?php
-            //Get Database Data
+            //Get Database Data for Scrollspy
             $uid = $_SESSION["userid"];
             $cCol = $_SESSION['cCollege'];
             $sql = "SELECT * FROM essays WHERE userId = $uid AND collegeId = $cCol;";
             $result = mysqli_query($conn, $sql);
             $num = mysqli_num_rows($result);
 
+            //Add Essays to Scrollspy
             if($num>0){
                 $n = 1;
                 while($row = mysqli_fetch_assoc($result)){
@@ -69,8 +70,11 @@
                     $n++;
                 }
                 
+            }else{
+                echo "<h6>Added Essays will be Displayed Here</h6>";
             }
         ?>
+        <!--Link to return to Colleges Page-->
         <p>Return to <a href = "colleges.php">Colleges</a> </p>
       </div>
         </div>
@@ -78,28 +82,30 @@
     
   
     <div class = "container-fluid mt-3 mx-auto" data-bs-spy= "scroll" data-bs-target="#quickNav" data-bs-offset="0" tabindex="0"  style = "max-width:1000px">
-    <?php 
     
-    //Get Database Data
+    <?php 
+    //Get Database Data for Essay Cards
     $uid = $_SESSION["userid"];
     $cCol = $_SESSION['cCollege'];
     $sql = "SELECT * FROM essays WHERE userId = $uid AND collegeId = $cCol;";
     $result = mysqli_query($conn, $sql);
     $num = mysqli_num_rows($result);
 
-    //Match Card Text
+    //Create Cards
     if($num > 0){
       $n = 1;
       while($row = mysqli_fetch_assoc($result)){
+          //Create Session Variable
           $id = $row['essayId'];
           $_SESSION['eID'.$n] = $id;
-          //echo $_SESSION['eID1'];
+          //Store Data
           $prompt = mysqli_real_escape_string($conn,$row['essayPrompt']);
           $limit = $row['wordLimit'];
           $response = mysqli_real_escape_string($conn, $row['response']);
           $notes = mysqli_real_escape_string($conn,$row['notes']);
           $comp = $row['completed'];
-
+          
+          //Unique HTML ID Creation
           $essay = 'essay'.$n;
           $ep = 'ep'.$n;
           $wl = 'wl'.$n;
@@ -108,6 +114,7 @@
           $nt = 'notes'.$n;
           $check = 'check'.$n;
           
+          //Display Essay Card
           echo " <!--Essay 1-->
           <div class=\"card mx-auto mb-4\"  id = \"$essay\">
               <div class=\"card-header\">
@@ -149,7 +156,8 @@
                 </div>
           </div>";
           
-          
+          //Fill in existing responses/notes/completion
+          //Update word count
           echo "<script>
           
           var rsp = document.getElementById('response' + $n);
@@ -162,15 +170,13 @@
           if('$comp' == 'Yes'){
             chk.checked = true;
           }
+          
           countWords($n);
           
           </script>";
-
-          
           $n++;
           
-      }
-      
+      }  
   }
   ?>
   
@@ -295,12 +301,12 @@
     })
 
     var loc = 1;
-    //Open Edit Modal
+    //Open Edit Modal Listener
     var editModal = document.getElementById("editEssay");
     editModal.addEventListener("show.bs.modal", function (event) {
         // Button that triggered the modal
         var button = event.relatedTarget;
-        // Extract info from data-bs-* attributes
+        // Extract essay number from data-bs-whatever 
         var essay = button.getAttribute("data-bs-whatever");
         
         var eNum = essay.substring(essay.length-1);
@@ -309,7 +315,7 @@
         
         var ep = document.getElementById("ep" + eNum);
         var wl = document.getElementById("wl" + eNum);
-        // Update the modal's content.
+        // Autofill modal's form fields content.
         var prompt = document.getElementById("essay-prompt");
         var limit = document.getElementById("word-limit");
         var hidden = document.getElementById("essay-id");
@@ -318,13 +324,12 @@
         hidden.value = eNum;
     })
 
-    //Delete Modal Code
-    
+    //Deletion Modal Code
     var delModal = document.getElementById("delEssay");
     delModal.addEventListener("show.bs.modal", function (event) {
         // Button that triggered the modal
         var button = event.relatedTarget;
-        // Extract info from data-bs-* attributes
+        // Extract essay number from data-bs-whatever 
         var essay = button.getAttribute("data-bs-whatever");
         var eNum = essay.substring(essay.length-1);
         
