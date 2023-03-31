@@ -6,7 +6,7 @@ if(isset($_POST["sub"])){
 
     require_once 'dbh.inc.php';
     require_once 'functions.inc.php';
-    //Checks if Input is empty
+    //Checks in Input is empty
     if(emptyInputLogin($username, $pswd) !== false){
         header("location: ../SignIn.php?error=emptyinput");
         exit();

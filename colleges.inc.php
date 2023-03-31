@@ -24,14 +24,14 @@
    
    //Update Colleges
    if(isset($_POST["update"])){
-    //Store Form Data
     $uName = $_POST["updateCN"];
     $uDate = $_POST["updateDD"];
     $getID = $_POST["getID"];
     $uid = $_SESSION["userid"];
     $index =  $_SESSION['cID'.$getID];
-    
-    //Update Database
+    echo $uName;
+    echo $uDate;
+    echo $index;
     $sql = "UPDATE colleges SET collegeName = '$uName', dueDate = '$uDate'
     WHERE collegeId = '$index' AND userId = '$uid'";
     $run = mysqli_query($conn, $sql);
@@ -46,12 +46,11 @@
 
    //Delete Colleges
    if(isset($_POST["delete"])){
-    
+    //echo "Success";
     $nCol = $_POST['delID'];
     $index = $_SESSION['cID'.$nCol];
     $uid = $_SESSION["userid"];
-    
-    //Delete From Database
+    echo $index;
     $sql = "DELETE FROM colleges WHERE collegeId = '$index'";
     $run = mysqli_query($conn, $sql);
     if($run){
@@ -63,11 +62,10 @@
 
    }
 
-   //Link Selected College to Correct Essays
    if(isset($_POST["link"])){
     $loc = $_POST["link"]; 
     $index = $_SESSION['cID'.$loc]; 
     $_SESSION['cCollege'] = $index;
     echo $_SESSION['cCollege'];
-    header("location: ../essay1.php");
+    header("location: ../essay.php");
    }
